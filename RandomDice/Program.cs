@@ -4,16 +4,13 @@ namespace RandomDice
 {
     class Program
     {
-        public static int[] Rolldice(int dicenum)
+        public static int Rolldice()
         {
+            int rolleddice = 0;
             Random diceRoller = new Random();
-            int[] rolleddice = new int[dicenum];
-            
-            for (int i = 0; i < dicenum; i++)
-            {
-                rolleddice[i] = diceRoller.Next(1, 6);
-            }
 
+            rolleddice = diceRoller.Next(1, 7);
+            
             return rolleddice;
         }
         private static void Main(string[] args)
@@ -21,12 +18,18 @@ namespace RandomDice
             Console.WriteLine("Introduce the number of dices to roll");
             int diceNum = Convert.ToInt16(Console.ReadLine());
 
-            int[] rolleddice = Rolldice(diceNum);
+            int valueSum = 0;
+            int rolledValue = 0;
 
-            foreach (int i in rolleddice)
+            for (int i = 0; i < diceNum; i++)
             {
-                Console.Write(i + " ");
+                rolledValue = Rolldice();
+                Console.Write(rolledValue + " ");
+
+                valueSum += rolledValue;
+
             }
+            Console.WriteLine($"\nSum of dice values = {valueSum}");
         }
     }
 }
